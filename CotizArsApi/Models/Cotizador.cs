@@ -5,10 +5,9 @@ using System.Threading.Tasks;
 
 namespace CotizArs.Models
 {
-    interface IMoneda
+    public class Cotizador
     {
-        decimal Valor { get; set; }
-        DateTime UltimaActualizacion { get; set; }
-        string GetCotizacion();
+        private IMonedaBehaviour moneda; 
+
     }
 }
