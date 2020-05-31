@@ -24,44 +24,61 @@ var __assign = (this && this.__assign) || function () {
     return __assign.apply(this, arguments);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Moneda = void 0;
 var React = require("react");
 var react_redux_1 = require("react-redux");
 var async_thunks_1 = require("./async-thunks");
 var Comp = /** @class */ (function (_super) {
     __extends(Comp, _super);
     function Comp(props) {
-        return _super.call(this, props) || this;
+        var _this = _super.call(this, props) || this;
+        _this.monedas = ['Dolar', 'Euro', 'Real'];
+        _this.precios = [0, 0, 0];
+        return _this;
     }
     Comp.prototype.componentDidMount = function () {
-        this.getData();
+        this.getAllCotizaciones();
     };
     Comp.prototype.componentWillUnmount = function () {
-        clearTimeout(this.interval);
+        clearTimeout(this.intervaloDeActualizacion);
     };
-    Comp.prototype.getData = function () {
-        this.props.dispatch(async_thunks_1.retrieveMonedaData());
-        this.interval = setTimeout(this.getData.bind(this), 5000);
+    Comp.prototype.getAllCotizaciones = function () {
+        for (var x = 0; x < this.monedas.length; x++) {
+            this.props.dispatch(async_thunks_1.getOneCotizacion(this.monedas[x].toLowerCase()));
+        }
+        this.intervaloDeActualizacion = setTimeout(this.getAllCotizaciones.bind(this), 5000);
     };
     Comp.prototype.render = function () {
-        var _a = this.props, moneda = _a.moneda, precio = _a.precio;
-        var content = null;
-        if (moneda) {
-            content =
-                [
-                    React.createElement("div", null, "Datos de CotizAr:"),
-                    React.createElement("div", null,
-                        "Moneda: ",
-                        moneda),
-                    React.createElement("div", null,
-                        "Precio: ",
-                        precio),
-                ];
-        }
-        else
-            content = [React.createElement("div", null, "Esperando datos de CotizAr")];
-        //var update = [<div>Actualizado: {this.state.}</div>];
-        return React.createElement("div", null, content);
+        this.setCotizaciónActualizada();
+        return (this.MonedaTable());
     };
+    Comp.prototype.setCotizaciónActualizada = function () {
+        var _this = this;
+        var index = this.monedas.findIndex(function (value) { return value.toUpperCase() == _this.props.moneda.toUpperCase(); });
+        if (index != undefined)
+            this.precios[index] = this.props.precio;
+    };
+    Comp.prototype.MonedaTable = function () {
+        return React.createElement("div", null,
+            React.createElement("table", null,
+                React.createElement("thead", null,
+                    React.createElement("tr", null)),
+                React.createElement("tbody", null, this.getTable())),
+            React.createElement("div", null,
+                "Actualizado: ",
+                Date()));
+    };
+    Comp.prototype.getTable = function () {
+        var _this = this;
+        return (this.monedas.map(function (item, i) { return (React.createElement("tr", null,
+            React.createElement("td", null,
+                item,
+                ": "),
+            React.createElement("td", null,
+                "$ ",
+                _this.precios[i]))); }));
+    };
+    ;
     return Comp;
 }(React.Component));
 exports.Moneda = react_redux_1.connect(function (state) { return __assign({}, state); })(Comp);

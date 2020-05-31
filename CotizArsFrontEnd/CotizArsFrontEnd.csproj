@@ -6,7 +6,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Scripts\" />
+    <None Remove="Scripts\moneda-listbox.js" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="wwwroot\dist\" />
   </ItemGroup>
 
@@ -15,6 +18,10 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="Scripts\moneda-listbox.js" />
   </ItemGroup>
 
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'">

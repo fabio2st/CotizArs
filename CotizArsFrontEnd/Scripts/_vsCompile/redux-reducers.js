@@ -11,10 +11,11 @@ var __assign = (this && this.__assign) || function () {
     return __assign.apply(this, arguments);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.moneda_reducers = void 0;
 var redux_actions_1 = require("./redux-actions");
 var monedaInitialState = {
     moneda: '',
-    precio: ''
+    precio: 0
 };
 function moneda_reducers(state, action) {
     if (state === void 0) { state = monedaInitialState; }

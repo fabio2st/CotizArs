@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.receiveMonedaData = exports.RECEIVE_MONEDA = void 0;
 exports.RECEIVE_MONEDA = 'RECEIVE_MONEDA';
 function receiveMonedaData(data) {
     return {

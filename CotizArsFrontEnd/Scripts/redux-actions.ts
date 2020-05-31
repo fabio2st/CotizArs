@@ -1,6 +1,6 @@
 ﻿export interface IMonedaData {
     moneda: string;
-    precio: string;
+    precio: number;
 }
 
 export const RECEIVE_MONEDA = 'RECEIVE_MONEDA';

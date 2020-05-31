@@ -3,7 +3,7 @@ import { RECEIVE_MONEDA, IMonedaData } from './redux-actions';
 
 const monedaInitialState: IMonedaData = {
     moneda: '',
-    precio: ''
+    precio: 0
 };
 
 export function moneda_reducers(state: IMonedaData = monedaInitialState, action: AnyAction) {

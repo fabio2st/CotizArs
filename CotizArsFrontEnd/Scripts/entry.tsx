@@ -6,6 +6,7 @@ import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import { moneda_reducers } from './redux-reducers';
 import { Moneda } from './Moneda';
+//import { MonedaList } from './MonedaList';
 
 var Store = createStore(moneda_reducers, (window as any).ReduxInitialState, applyMiddleware(thunk));
 //render(<Provider store={Store}><Moneda /></Provider>, document.querySelector('body'));

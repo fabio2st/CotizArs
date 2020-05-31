@@ -9,7 +9,8 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, 'wwwroot/dist'),
         publicPath: '/dist/', 
-        filename: "[name].js",
+        //filename: "[name].js",
+        filename: "./bundle.js",
         devtoolModuleFilenameTemplate: '[resource-path]' 
     },
     module: {
