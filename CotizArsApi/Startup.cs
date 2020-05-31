@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CotizArs.Models;
+using CotizArsApi.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -27,7 +28,7 @@ namespace CotizArs
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddHttpClient<CambioTodayService>();
+            services.AddHttpClient<IApiRestServiceClient>();
             //services.AddTransient<CambioTodayService>();
             services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
             {

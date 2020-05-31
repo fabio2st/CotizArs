@@ -1,15 +1,15 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using CotizArs.Models;
+using CotizArsApi.Models;
 
-namespace CotizArs.Controllers
+namespace CotizArsApi.Controllers
 {
     [ApiController]
     [Route("cotizacion/[controller]")]
     public class EuroController : CotizacionController
     {
-        public EuroController(CambioTodayService cambioTodayService) : base(cambioTodayService)
+        public EuroController(IApiRestServiceClient apiRestServiceClient) : base(apiRestServiceClient)
         {
-            cambioTodayService.SetMonedaEuro();
+            apiRestServiceClient.SetMonedaEuro();
         }
     }
 }

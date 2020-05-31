@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CotizArs.Models
+namespace CotizArsApi.Models
 {
     public class MonedaAdapter
     {

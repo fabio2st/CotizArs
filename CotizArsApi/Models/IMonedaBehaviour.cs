@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CotizArs.Models
+namespace CotizArsApi.Models
 {
     public interface IMonedaBehaviour
     {
         string GetId();
         string GetDescripcion();
-        String Format(decimal value);
+        string Format(decimal value);
         //Moneda Serializar(string json);
     }
 }

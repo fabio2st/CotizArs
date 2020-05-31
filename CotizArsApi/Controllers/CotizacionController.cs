@@ -3,24 +3,25 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CotizArs.Models;
+using CotizArsApi.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
-namespace CotizArs.Controllers
+namespace CotizArsApi.Controllers
 {
-    public class CotizacionController : ControllerBase
+    public abstract class CotizacionController : ControllerBase
     {
-        private readonly CambioTodayService cambioTodayService;
-        public CotizacionController(CambioTodayService cambioTodayService)
+        private readonly IApiRestServiceClient apiRestServiceCliente;
+        public CotizacionController(IApiRestServiceClient apiRestServiceCliente)
         {
-            this.cambioTodayService = cambioTodayService;
+            this.apiRestServiceCliente = apiRestServiceCliente;
         }
         [HttpGet]
-        public async Task<ActionResult<MonedaAdapter>> Get()
+        public async Task<ActionResult<MonedaAdapter>> GetMonedaCotizacion()
         {
-            Moneda moneda = await cambioTodayService.GetMoneda();
+            Moneda moneda = await apiRestServiceCliente.GetMoneda();
             MonedaAdapter monedaAdapter = new MonedaAdapter(moneda);
-            monedaAdapter.Moneda = cambioTodayService.MonedaBehaviour.GetDescripcion();
+            monedaAdapter.Moneda = apiRestServiceCliente.MonedaBehaviour.GetDescripcion();
             //monedaAdapter.Precio = cambioTodayService.MonedaBehaviour.Format(monedaAdapter.Precio);
             return monedaAdapter;
         }

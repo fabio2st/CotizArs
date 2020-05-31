@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace CotizArs.Models
+namespace CotizArsApi.Models
 {
     public class DolarBehaviour : IMonedaBehaviour
     {
