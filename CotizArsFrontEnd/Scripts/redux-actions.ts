@@ -1,5 +1,5 @@
 ﻿export interface IMonedaData {
-    moneda: string;
+    nombreMoneda: string;
     precio: number;
 }
 

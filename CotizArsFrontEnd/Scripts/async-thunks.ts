@@ -5,6 +5,7 @@ export function getOneCotizacion(monedaNombre: string) {
     return (dispatch: <T>(action: any) => T, getState: () => any) => {
         dispatch(fetchMonedaBegin());
         var uri = 'https://localhost:5001/cotizacion/' + monedaNombre
+        //var uri = 'https://cotizarsapi20200531131015.azurewebsites.net/cotizacion/' + monedaNombre
         var moneda = fetch(uri, { method: 'get' })
             .then(handleErrors)
             .then( response => response.json())

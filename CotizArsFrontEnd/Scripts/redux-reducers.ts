@@ -2,7 +2,7 @@
 import { FETCH_MONEDA_SUCCESS, FETCH_MONEDA_BEGIN, FETCH_MONEDA_FAILURE, IMonedaData } from './redux-actions';
 
 const monedaInitialState: IMonedaData = {
-    moneda: '',
+    nombreMoneda: '',
     precio: 0
 };
 

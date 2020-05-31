@@ -64,7 +64,7 @@ var Comp = /** @class */ (function (_super) {
     };
     Comp.prototype.setCotizaciónActualizada = function () {
         var _this = this;
-        var index = this.monedas.findIndex(function (value) { return value.toUpperCase() == _this.props.moneda.toUpperCase(); });
+        var index = this.monedas.findIndex(function (value) { return value.toUpperCase() == _this.props.nombreMoneda.toUpperCase(); });
         if (index != undefined)
             this.precios[index] = this.props.precio;
     };

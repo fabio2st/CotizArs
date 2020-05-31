@@ -51,7 +51,7 @@ class Comp extends React.Component<Props_redux, IState> {
     }
 
     private setCotizaciónActualizada() {
-        var index = this.monedas.findIndex(value => value.toUpperCase() == this.props.moneda.toUpperCase());
+        var index = this.monedas.findIndex(value => value.toUpperCase() == this.props.nombreMoneda.toUpperCase());
         if (index != undefined)
             this.precios[index] = this.props.precio;
     }

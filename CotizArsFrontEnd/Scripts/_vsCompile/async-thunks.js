@@ -6,7 +6,8 @@ var domain_task_1 = require("domain-task");
 function getOneCotizacion(monedaNombre) {
     return function (dispatch, getState) {
         dispatch(redux_actions_1.fetchMonedaBegin());
-        var uri = 'https://localhost:5001/cotizacion/' + monedaNombre;
+        //var uri = 'https://localhost:5001/cotizacion/' + monedaNombre
+        var uri = 'https://cotizarsapi20200531131015.azurewebsites.net/cotizacion/' + monedaNombre;
         var moneda = domain_task_1.fetch(uri, { method: 'get' })
             .then(handleErrors)
             .then(function (response) { return response.json(); })
