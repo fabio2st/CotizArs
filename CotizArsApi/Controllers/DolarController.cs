@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using CotizArs.Models;
 using CotizArsApi.Models;
 
 namespace CotizArsApi.Controllers
