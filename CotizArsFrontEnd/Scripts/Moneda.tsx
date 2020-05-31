@@ -9,6 +9,8 @@ import { IMonedaData } from './redux-actions';
 
 interface Props_redux extends IMonedaData {
     dispatch: <T>(action: any) => T
+    error
+    loading
 }
 interface IState { }
 
@@ -16,6 +18,8 @@ class Comp extends React.Component<Props_redux, IState> {
     intervaloDeActualizacion: number;
     monedas = ['Dolar', 'Euro', 'Real'];
     precios = [0,0,0];
+
+    private readonly mensajeDeCarga = <div>{this.MonedaTable()}<div>Cargando...</div></div>;
 
     constructor(props) {
         super(props);
@@ -35,10 +39,15 @@ class Comp extends React.Component<Props_redux, IState> {
     }
 
     render() {
-          this.setCotizaciónActualizada();
-        return (
-            this.MonedaTable()
-        );
+        const { error, loading } = this.props;
+        if (error) {
+            return this.mensajeError(error);
+        }
+        if (loading) {
+            return this.mensajeDeCarga;
+        }
+        this.setCotizaciónActualizada();
+        return ( this.MonedaTable());
     }
 
     private setCotizaciónActualizada() {
@@ -48,28 +57,40 @@ class Comp extends React.Component<Props_redux, IState> {
     }
 
     private MonedaTable() {
-        return <div>
-            <table>
-                <thead>
-                    <tr></tr>
-                </thead>
-                <tbody>
-                    {this.getTable()}
-                </tbody>
-            </table>
-            <div>Actualizado: {Date()}</div>
-        </div>;
+        return (
+            <div>
+                <table>
+                    <thead>
+                        <tr></tr>
+                    </thead>
+                    <tbody>
+                        {this.MonedaFilas()}
+                    </tbody>
+                </table>
+                <div>Actualizado: {Date()}</div>
+            </div>
+        )
     }
 
-    getTable() {
+    MonedaFilas() {
         return (
         this.monedas.map((item, i) => (
-            <tr>
+            <tr key={i}>
                 <td>{item}: </td>
                 <td>$ {this.precios[i]}</td>
             </tr>
             )))
         };
+    mensajeError(error: any) {
+        return <div>Error!{error.message}</div>;
+    }
 }
 
+const mapStateToProps = state => ({
+    item: state.data.item,
+    loading: state.data.loading,
+    error: state.data.error
+});
 export var Moneda: React.ComponentClass<{}> = connect(state => { return { ...state }; })(Comp);
+
+

@@ -34,6 +34,9 @@ var Comp = /** @class */ (function (_super) {
         var _this = _super.call(this, props) || this;
         _this.monedas = ['Dolar', 'Euro', 'Real'];
         _this.precios = [0, 0, 0];
+        _this.mensajeDeCarga = React.createElement("div", null,
+            _this.MonedaTable(),
+            React.createElement("div", null, "Cargando..."));
         return _this;
     }
     Comp.prototype.componentDidMount = function () {
@@ -49,6 +52,13 @@ var Comp = /** @class */ (function (_super) {
         this.intervaloDeActualizacion = setTimeout(this.getAllCotizaciones.bind(this), 5000);
     };
     Comp.prototype.render = function () {
+        var _a = this.props, error = _a.error, loading = _a.loading;
+        if (error) {
+            return this.mensajeError(error);
+        }
+        if (loading) {
+            return this.mensajeDeCarga;
+        }
         this.setCotizaciónActualizada();
         return (this.MonedaTable());
     };
@@ -59,18 +69,18 @@ var Comp = /** @class */ (function (_super) {
             this.precios[index] = this.props.precio;
     };
     Comp.prototype.MonedaTable = function () {
-        return React.createElement("div", null,
+        return (React.createElement("div", null,
             React.createElement("table", null,
                 React.createElement("thead", null,
                     React.createElement("tr", null)),
-                React.createElement("tbody", null, this.getTable())),
+                React.createElement("tbody", null, this.MonedaFilas())),
             React.createElement("div", null,
                 "Actualizado: ",
-                Date()));
+                Date())));
     };
-    Comp.prototype.getTable = function () {
+    Comp.prototype.MonedaFilas = function () {
         var _this = this;
-        return (this.monedas.map(function (item, i) { return (React.createElement("tr", null,
+        return (this.monedas.map(function (item, i) { return (React.createElement("tr", { key: i },
             React.createElement("td", null,
                 item,
                 ": "),
@@ -79,7 +89,17 @@ var Comp = /** @class */ (function (_super) {
                 _this.precios[i]))); }));
     };
     ;
+    Comp.prototype.mensajeError = function (error) {
+        return React.createElement("div", null,
+            "Error!",
+            error.message);
+    };
     return Comp;
 }(React.Component));
+var mapStateToProps = function (state) { return ({
+    item: state.data.item,
+    loading: state.data.loading,
+    error: state.data.error
+}); };
 exports.Moneda = react_redux_1.connect(function (state) { return __assign({}, state); })(Comp);
 //# sourceMappingURL=Moneda.js.map

@@ -20,8 +20,12 @@ var monedaInitialState = {
 function moneda_reducers(state, action) {
     if (state === void 0) { state = monedaInitialState; }
     switch (action.type) {
-        case redux_actions_1.RECEIVE_MONEDA:
-            return __assign(__assign({}, state), action.data);
+        case redux_actions_1.FETCH_MONEDA_BEGIN:
+            return __assign(__assign({}, state), { loading: true, error: null });
+        case redux_actions_1.FETCH_MONEDA_SUCCESS:
+            return __assign(__assign(__assign({}, state), action.data), { loading: false });
+        case redux_actions_1.FETCH_MONEDA_FAILURE:
+            return __assign(__assign({}, state), { loading: false, error: action.payload.error, items: [] });
         default:
             return state;
     }
