@@ -5,10 +5,10 @@ using CotizArsApi.Models;
 namespace CotizArsApi.Controllers
 {
     [ApiController]
-    [Route("cotizacion/[controller]")]
+    [Route("cotizacion/[Controller]")]
     public class DolarController : CotizacionController
     {
-        public DolarController(IApiRestServiceClient apiRestServiceClient) : base(apiRestServiceClient)
+        public DolarController(CambioTodayApiRestClient apiRestServiceClient) : base(apiRestServiceClient)
         {
             apiRestServiceClient.SetMonedaDolar();
         }

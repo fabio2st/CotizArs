@@ -11,18 +11,17 @@ namespace CotizArsApi.Controllers
 {
     public abstract class CotizacionController : ControllerBase
     {
-        private readonly IApiRestServiceClient apiRestServiceCliente;
-        public CotizacionController(IApiRestServiceClient apiRestServiceCliente)
+        public readonly IApiRestClient apiRestClient;
+        public CotizacionController(IApiRestClient apiRestCliente)
         {
-            this.apiRestServiceCliente = apiRestServiceCliente;
+            this.apiRestClient = apiRestCliente;
         }
         [HttpGet]
         public async Task<ActionResult<MonedaAdapter>> GetMonedaCotizacion()
         {
-            Moneda moneda = await apiRestServiceCliente.GetMoneda();
+            Moneda moneda = await apiRestClient.GetMoneda();
             MonedaAdapter monedaAdapter = new MonedaAdapter(moneda);
-            monedaAdapter.Moneda = apiRestServiceCliente.MonedaBehaviour.GetDescripcion();
-            //monedaAdapter.Precio = cambioTodayService.MonedaBehaviour.Format(monedaAdapter.Precio);
+            monedaAdapter.NombreMoneda = apiRestClient.MonedaBehaviour.GetDescripcion();
             return monedaAdapter;
         }
     }

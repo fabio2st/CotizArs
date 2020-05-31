@@ -7,7 +7,7 @@ namespace CotizArsApi.Controllers
     [Route("cotizacion/[controller]")]
     public class EuroController : CotizacionController
     {
-        public EuroController(IApiRestServiceClient apiRestServiceClient) : base(apiRestServiceClient)
+        public EuroController(CambioTodayApiRestClient apiRestServiceClient) : base(apiRestServiceClient)
         {
             apiRestServiceClient.SetMonedaEuro();
         }

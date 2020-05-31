@@ -12,7 +12,7 @@ namespace CotizArsApi.Models
         {
             this.imoneda = imoneda;
         }
-        public string Moneda { get ; set; }
+        public string NombreMoneda { get ; set; }
         public string Precio { get => String.Format("{0:F2}", imoneda.Valor); }
     }
 }

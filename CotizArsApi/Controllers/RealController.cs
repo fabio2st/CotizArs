@@ -7,9 +7,9 @@ namespace CotizArsApi.Controllers
     [Route("cotizacion/[controller]")]
     public class RealController : CotizacionController
     {
-        public RealController(IApiRestServiceClient apiRestServiceClient) : base(apiRestServiceClient)
+        public RealController(CambioTodayApiRestClient apiRestClient) : base(apiRestClient)
         {
-            apiRestServiceClient.SetMonedaReal();
+            apiRestClient.SetMonedaReal();
         }    
     }
 }

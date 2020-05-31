@@ -9,12 +9,12 @@ using System.Threading.Tasks;
 
 namespace CotizArsApi.Models
 {
-    public class IApiRestServiceClient
+    public class CambioTodayApiRestClient : IApiRestClient
     {
         private IMonedaBehaviour monedaBehaviour;
         HttpClient HttpClient { get; }
         string sufixAddress = "/ARS/json?quantity=1&key=4430|Fsd5MtGMpaRBF8gLGNB5NT6kw90f0^6K";
-        public IApiRestServiceClient(HttpClient httpClient)
+        public CambioTodayApiRestClient(HttpClient httpClient)
         {
             httpClient.BaseAddress = new Uri("https://api.cambio.today/v1/quotes/");
             HttpClient = httpClient;

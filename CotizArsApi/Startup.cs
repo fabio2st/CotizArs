@@ -28,7 +28,7 @@ namespace CotizArs
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddHttpClient<IApiRestServiceClient>();
+            services.AddHttpClient<CambioTodayApiRestClient>();
             //services.AddTransient<CambioTodayService>();
             services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
             {
